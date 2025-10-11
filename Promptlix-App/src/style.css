@@ -1,0 +1,28 @@
+@import "@ionic/angular/css/core.css";
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+
+html,
+body,
+ion-app,
+ion-content {
+    height: 100%;
+    background: #000 !important;
+    color: #fff;
+}
+
+
+ion-app {
+    --ion-background-color: #000;
+}
+
+
+.full-view-modal .modal-wrapper {
+    --background: #000;
+}
+
+ion-button {
+    outline: none;
+    box-shadow: none;
+}

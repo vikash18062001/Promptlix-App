@@ -1,0 +1,112 @@
+/* Home Page Styling */
+ion-content {
+  --background: #000;
+  /* Dark background */
+  color: #fff;
+}
+
+/* Grid wrapper */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+  padding: 10px;
+  justify-items: center;
+}
+
+.grid-item {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.grid-item:hover {
+  transform: scale(1.03);
+}
+
+.grid-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+ion-infinite-scroll-content {
+  --color: #fff;
+}
+
+.full-view {
+  background-color: #000;
+  color: #fff;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.full-view img {
+  width: 100%;
+  height: 60%;
+  object-fit: contain;
+  background: #000;
+}
+
+.full-view .text-section {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.full-view .actions {
+  display: flex;
+  justify-content: space-around;
+  padding: 16px;
+  border-top: 1px solid #333;
+}
+
+.full-view ion-button {
+  --background: #333;
+  --color: #fff;
+  border-radius: 8px;
+}
+
+.masonry {
+  display: block;
+  margin-left: -0.25rem;
+  margin-right: -0.25rem;
+}
+
+.masonry-item {
+  width: 50%;
+  padding: 0 0.25rem 2rem;
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: top;
+
+  ion-icon {
+    position: absolute;
+    color: white;
+    font-size: 1.2rem;
+    bottom: 5px;
+    right: 10px;
+  }
+}
+
+.masonry-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+.title-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}

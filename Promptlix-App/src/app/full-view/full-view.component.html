@@ -1,0 +1,29 @@
+<ion-header>
+    <ion-toolbar color="dark">
+        <ion-buttons slot="start">
+            <ion-button (click)="close()">Close</ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="full-view-content ion-padding">
+    <div class="image-wrap">
+        <img [src]="item.imageUrl" alt="image" />
+        <div class="image-actions">
+            <ion-icon (click)="share()" name="paper-plane-outline"></ion-icon>
+            <ion-icon name="copy-outline" (click)="copyText()"></ion-icon>
+        </div>
+    </div>
+    <ion-icon name="heart"></ion-icon>
+
+    <div class="text-area">
+        <pre>{{ item.howto }}</pre>
+
+        <div class="prompt-info">
+            <h3>HOW TO USE PROMPT?</h3>
+            <p>1) Click Copy Button</p>
+            <p>2) Open Google Gemini Application</p>
+            <p>3) Upload Your Photo And Paste This Prompt</p>
+        </div>
+    </div>
+</ion-content>

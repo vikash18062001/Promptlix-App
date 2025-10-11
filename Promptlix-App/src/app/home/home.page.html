@@ -1,0 +1,51 @@
+<ion-menu side="end" menuId="main-menu" contentId="page-content">
+  <ion-header>
+    <ion-toolbar color="dark">
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list color="medium">
+      <ion-item (click)="home()" color="medium">Home</ion-item>
+      <ion-item (click)="rateApp()" color="medium">Rate App</ion-item>
+      <ion-item (click)="shareApp()" color="medium">Share App</ion-item>
+      <ion-item (click)="openPrivacyPolicy()" color="medium">Privacy Policy</ion-item>
+      <ion-item (click)="openHelpCenter()" color="medium">Help Center</ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="toggleSorting()">
+        <div class="title-left">
+          {{ isTrending ? 'Trend' : 'Latest' }}
+          <ion-icon name="chevron-down-outline"></ion-icon>
+        </div>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title></ion-title>
+
+    <ion-buttons slot="end">
+      <!-- 🔹 this button opens the menu -->
+      <ion-menu-button autoHide="false" menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="page-content" class="ion-padding" fullscreen>
+  <div class="masonry" #masonryGrid>
+    <div class="masonry-item" *ngFor="let item of data" (click)="openFullView(item)">
+      <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
+      <img [src]="item.imageUrl" alt="Image" loading="lazy" />
+    </div>
+  </div>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more images...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
