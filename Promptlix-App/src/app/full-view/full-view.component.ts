@@ -22,10 +22,10 @@ export class FullViewComponent {
   async copyText() {
     try {
       if (navigator && (navigator as any).clipboard?.writeText) {
-        await (navigator as any).clipboard.writeText(this.item.howto);
+        await (navigator as any).clipboard.writeText(this.item.prompt);
       } else {
         const ta = document.createElement('textarea');
-        ta.value = this.item.howto;
+        ta.value = this.item.howTo;
         document.body.appendChild(ta);
         ta.select();
         document.execCommand('copy');
@@ -44,11 +44,11 @@ export class FullViewComponent {
       if ((navigator as any).share) {
         await (navigator as any).share({
           title: 'Promptlix',
-          text: this.item.howto,
+          text: this.item.howTo,
           url: this.item.imageUrl,
         });
       } else {
-        await (navigator as any).clipboard.writeText(this.item.imageUrl || this.item.howto);
+        await (navigator as any).clipboard.writeText(this.item.imageUrl || this.item.howTo);
         const t = await this.toastCtrl.create({ message: 'Link copied (no share available)', duration: 1400 });
         await t.present();
       }

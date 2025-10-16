@@ -44,6 +44,7 @@ export class HomePage implements OnInit {
     this.finished = false;
     this.loadMore();
   }
+  // items:DataItem[] = [];
   // items = [
   //   { image: 'https://picsum.photos/300/200' },
   //   { image: 'https://picsum.photos/300/400' },

@@ -5,7 +5,7 @@ import { provideIonicAngular } from '@ionic/angular/standalone';
 import { provideRouter } from '@angular/router';
 import { HomePage } from './app/home/home.page';
 import { addIcons } from 'ionicons';
-import { paperPlaneOutline, shareOutline, heartOutline, copyOutline, ellipsisHorizontalOutline, chevronDownOutline, menuOutline } from 'ionicons/icons';
+import { paperPlaneOutline, shareOutline, heartOutline, copyOutline, ellipsisHorizontalOutline, chevronDownOutline, chevronBackOutline, menuOutline } from 'ionicons/icons';
 
 if ((<any>window).location && window.location.hostname !== 'localhost') {
 // Keep default behavior; remove this line if you want prod detection different
@@ -18,6 +18,7 @@ addIcons({
   'copy-outline': copyOutline,
   'ellipsis-horizontal-outline': ellipsisHorizontalOutline,
   'chevron-down-outline': chevronDownOutline,
+  'chevron-back-outline': chevronBackOutline,
   'menu-outline' : menuOutline
 });
 
