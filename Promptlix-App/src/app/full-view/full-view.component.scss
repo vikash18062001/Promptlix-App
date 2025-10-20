@@ -44,6 +44,9 @@
         padding: 8px;
         color: #fff;
         cursor: pointer;
+        position: absolute;
+        top: 4%;
+        left: 5%;
   }
   
   .padding-bottom-20{
@@ -58,21 +61,11 @@
       font-size: 16px;
       color: #fff;
     }
-  
-    .prompt-info {
-      margin-top: 16px;
-      border-top: 1px solid #333;
-      padding-top: 12px;
-  
-      h3 {
-        font-size: 18px;
-        font-weight: 700;
-      }
-  
-      p {
-        margin: 4px 0;
-        color: #ccc;
-      }
+
+    h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
     }
   }
   

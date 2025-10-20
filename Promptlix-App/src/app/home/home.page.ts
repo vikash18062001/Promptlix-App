@@ -21,6 +21,8 @@ export class HomePage implements OnInit {
   loading = false;
   finished = false;
   masonryInstance: any;
+  sortingOption: 'TrendOrder' | 'CreatedAt' = 'TrendOrder';
+  sortingOrder: 'asc' | 'desc' = 'asc';
   @ViewChild('masonryGrid') masonryGrid!: ElementRef;
 
   constructor(
@@ -35,6 +37,8 @@ export class HomePage implements OnInit {
 
   toggleSorting() {
     this.isTrending = !this.isTrending;
+    this.sortingOption = this.isTrending ? 'TrendOrder' : 'CreatedAt';
+    this.sortingOrder = this.isTrending ? 'asc' : 'desc';
     this.resetAndReload();
   }
 
@@ -57,7 +61,7 @@ export class HomePage implements OnInit {
     if (this.loading || this.finished) return;
     this.loading = true;
 
-    this.trends.getData(this.page, this.limit).subscribe(
+    this.trends.getData(this.page, this.limit, this.sortingOption, this.sortingOrder).subscribe(
       (items) => {
         if (!items || items.length === 0) {
           this.finished = true;

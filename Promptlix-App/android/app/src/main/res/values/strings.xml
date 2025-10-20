@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">Promptlix-App</string>
-    <string name="title_activity_main">Promptlix-App</string>
-    <string name="package_name">io.ionic.starter</string>
-    <string name="custom_url_scheme">io.ionic.starter</string>
+    <string name="app_name">Promptlix</string>
+    <string name="title_activity_main">Promptlix</string>
+    <string name="package_name">com.promptlix.trend</string>
+    <string name="custom_url_scheme">com.promptlix.trend</string>
 </resources>

@@ -23,11 +23,14 @@ export class TrendsService {
 
     constructor(private http: HttpClient) { }
 
-
-    // Example paginated API call. Replace with your actual API signature.
-    getData(page = 0, limit = 10): Observable<DataItem[]> {
-        // If you have a real backend, use HttpClient. Example:
-        // const params = new HttpParams().set('page', page).set('limit', limit);
-        return this.http.get<DataItem[]>(this.apiUrl);
-    }
+    getData(
+        page: number = 0,
+        pageSize: number = 10,
+        sortBy: string = 'TrendOrder',
+        sortOrder: 'asc' | 'desc' = 'asc'
+      ): Observable<DataItem[]> {
+        const url = `${this.apiUrl}?page=${page}&pageSize=${pageSize}&sortBy=${sortBy}&sortOrder=${sortOrder}`;
+        return this.http.get<DataItem[]>(url);
+      }
+      
 } 
