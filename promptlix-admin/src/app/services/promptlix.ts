@@ -71,6 +71,17 @@ export class PromptlixService {
     return this.http.post(this.baseUrl, formData, { headers: this.getAuthHeaders() });
   }
 
+  getPaginated(
+    page: number,
+    pageSize: number,
+    sortBy: string,
+    sortOrder: 'asc' | 'desc'
+  ): Observable<any> {
+    const url = `${this.baseUrl}?page=${page}&pageSize=${pageSize}&sortBy=${sortBy}&sortOrder=${sortOrder}`;
+    return this.http.get(url);
+  }
+  
+
   update(id: string, data: TrendDto, imageFile?: File): Observable<any> {
     const formData = new FormData();
     formData.append('Prompt', data.prompt);

@@ -10,6 +10,7 @@ import { TrendFormComponent } from '../trend-form/trend-form';
   imports: [CommonModule, TrendFormComponent],
   template: `
     <div class="dashboard">
+
       <!-- Navbar -->
       <header class="navbar">
         <h1>Promptlix Admin Dashboard</h1>
@@ -24,22 +25,23 @@ import { TrendFormComponent } from '../trend-form/trend-form';
         <table>
           <thead>
             <tr>
-              <th>Prompt</th>
-              <th>How To</th>
-              <th>Order</th>
-              <th>Posted On</th>
+              <th (click)="sort('prompt')">Prompt</th>
+              <th (click)="sort('howTo')">How To</th>
+              <th (click)="sort('TrendOrder')">Order</th>
+              <th (click)="sort('createdAt')">Posted On</th>
               <th>Image</th>
               <th>Actions</th>
             </tr>
           </thead>
+
           <tbody>
             <tr *ngFor="let t of trends">
               <td>{{ t.prompt }}</td>
               <td><div class="how-to-text" [innerText]="t.howTo"></div></td>
               <td>{{ t.trendOrder }}</td>
-              <td>{{t.createdAt}}</td>
+              <td>{{ t.createdAt }}</td>
               <td>
-                <img *ngIf="t.imageUrl" [src]="t.imageUrl" alt="trend" width="40" height="40" />
+                <img *ngIf="t.imageUrl" [src]="t.imageUrl" width="40" height="40" />
               </td>
               <td class="action-buttons">
                 <button (click)="editTrend(t)">Edit</button>
@@ -51,7 +53,7 @@ import { TrendFormComponent } from '../trend-form/trend-form';
       </div>
 
       <!-- Empty message -->
-      <p *ngIf="trends.length === 0" class="no-data">No trends available.</p>
+      <p *ngIf="trends?.length === 0" class="no-data">No trends available.</p>
 
       <!-- Trend Form Modal -->
       <app-trend-form
@@ -59,10 +61,10 @@ import { TrendFormComponent } from '../trend-form/trend-form';
         [trend]="selectedTrend"
         (close)="onFormClose($event)">
       </app-trend-form>
+
     </div>
   `,
   styles: [`
-    /* Layout */
     .dashboard {
       background: #000;
       color: #fff;
@@ -72,7 +74,6 @@ import { TrendFormComponent } from '../trend-form/trend-form';
       flex-direction: column;
     }
 
-    /* Navbar */
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -83,60 +84,28 @@ import { TrendFormComponent } from '../trend-form/trend-form';
       margin-bottom: 1.5rem;
     }
 
-    .navbar h1 {
-      font-size: 1.3rem;
-      margin: 0;
-      color: #fff;
-    }
-
     .navbar-buttons {
       display: flex;
       gap: 0.8rem;
     }
 
-    .add-btn,
-    .logout-btn {
+    .add-btn, .logout-btn {
       padding: 0.5rem 1rem;
       border-radius: 6px;
       border: none;
       cursor: pointer;
-      font-weight: 500;
-      transition: 0.2s;
     }
 
-    .add-btn {
-      background: transparent;
-      border: 1px solid #fff;
-      color: #fff;
-    }
+    .add-btn { background: transparent; border: 1px solid #fff; color: #fff; }
+    .logout-btn { background: #ff4d4d; color: #fff; }
 
-    .add-btn:hover {
-      background: #fff;
-      color: #000;
-    }
-
-    .logout-btn {
-      background: #ff4d4d;
-      color: #fff;
-      border: none;
-    }
-
-    .logout-btn:hover {
-      background: #ff1a1a;
-    }
-
-    /* Table */
     .table-container {
       background: #111;
       border-radius: 8px;
       overflow-x: auto;
     }
 
-    .how-to-text {
-      white-space: pre-wrap;
-      word-wrap: break-word;
-    }
-
+    .how-to-text { white-space: pre-wrap; }
 
     table {
       width: 100%;
@@ -146,98 +115,54 @@ import { TrendFormComponent } from '../trend-form/trend-form';
 
     th, td {
       border-bottom: 1px solid #333;
-      text-align: left;
       padding: 0.75rem 1rem;
-      font-size: 0.9rem;
-    }
-
-    th {
-      background: #111;
-      color: #bbb;
-      text-transform: uppercase;
-      font-weight: 600;
-    }
-
-    tr:hover {
-      background: #1a1a1a;
-    }
-
-    .trend-img {
-      width: 50px;
-      height: 50px;
-      border-radius: 8px;
-      object-fit: cover;
-    }
-
-    .action-buttons {
-      display: flex;
-      gap: 0.5rem;
-    }
-
-    .edit-btn, .delete-btn {
-      padding: 0.3rem 0.8rem;
-      font-size: 0.85rem;
-      border-radius: 4px;
       cursor: pointer;
-      transition: 0.2s;
-      border: 1px solid transparent;
     }
 
-    .edit-btn {
-      background: transparent;
-      color: #fff;
-      border: 1px solid #fff;
+    .pagination-controls {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      align-items: center;
     }
 
-    .edit-btn:hover {
-      background: #fff;
-      color: #000;
+    .pagination-controls button {
+      padding: 0.4rem 1rem;
+      background: #222;
+      border: 1px solid #555;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
     }
 
-    .delete-btn {
-      border: 1px solid #ff5050;
-      color: #ff5050;
-      background: transparent;
-    }
-
-    .delete-btn:hover {
-      background: #ff5050;
-      color: #fff;
+    .pagination-controls button:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
     }
 
     .no-data {
       text-align: center;
-      margin-top: 2rem;
-      color: #aaa;
-    }
-
-    @media (max-width: 768px) {
-      .navbar h1 {
-        font-size: 1rem;
-      }
-
-      .navbar-buttons {
-        flex-direction: column;
-        align-items: flex-end;
-      }
-
-      .add-btn,
-      .logout-btn {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.8rem;
-      }
-
-      table {
-        font-size: 0.85rem;
-      }
+      margin-top: 1rem;
+      color: #bbb;
     }
   `]
 })
 export class DashboardComponent implements OnInit {
+
   trends: TrendDto[] = [];
   selectedTrend: TrendDto | null = null;
 
-  constructor(private service: PromptlixService, private router: Router) { }
+  /** Pagination */
+  currentPage = 0;
+  pageSize = 10;
+  totalPages = 0;
+
+  /** Sorting */
+  sortBy = 'TrendOrder';
+  sortOrder: 'asc' | 'desc' = 'asc';
+
+  constructor(private service: PromptlixService, private router: Router) {}
 
   ngOnInit() {
     if (!localStorage.getItem('admin')) {
@@ -247,18 +172,28 @@ export class DashboardComponent implements OnInit {
     this.loadTrends();
   }
 
+  /** Load paginated + sorted data */
   loadTrends() {
-    this.service.getAll().subscribe({
-      next: (data) => {
-        // Sort newest first
-        this.trends = data.sort((a, b) => {
-          const dateA = a.createdAt ? new Date(a.createdAt).getTime() : 0;
-          const dateB = b.createdAt ? new Date(b.createdAt).getTime() : 0;
-          return dateB - dateA;
-        });
-      },
-      error: (err) => console.error('Error fetching trends', err),
-    });
+    this.service
+      .getPaginated(this.currentPage, this.pageSize, this.sortBy, this.sortOrder)
+      .subscribe({
+        next: (res: any) => {
+          this.trends = res;       // expects { items, totalCount }
+          this.totalPages = Math.ceil(res.totalCount / this.pageSize);
+        },
+        error: (err) => console.error('Error loading trends', err),
+      });
+  }
+
+  /** Sorting logic */
+  sort(column: string) {
+    if (this.sortBy === column) {
+      this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
+    } else {
+      this.sortBy = column;
+      this.sortOrder = 'asc';
+    }
+    this.loadTrends();
   }
 
   addNew() {
@@ -283,5 +218,20 @@ export class DashboardComponent implements OnInit {
   logout() {
     localStorage.removeItem('admin');
     this.router.navigate(['/login']);
+  }
+
+  /** Pagination */
+  nextPage() {
+    if (this.currentPage + 1 < this.totalPages) {
+      this.currentPage++;
+      this.loadTrends();
+    }
+  }
+
+  prevPage() {
+    if (this.currentPage > 0) {
+      this.currentPage--;
+      this.loadTrends();
+    }
   }
 }
